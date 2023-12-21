@@ -107,22 +107,26 @@ export const removeTxn = (
     let map: {[key: number]: number} = {};
     txns.forEach(txn => {
         map[txn.friend.id] = 1 + (map[txn.friend.id] || 0);
+        if (txn.id === txnId) {
+            txn.amount = 0;
+            txn.reason = undefined;
+        }
     });
-
     return {
-        txns: txns.reduce((acc, txn) => {
-            if( txn.id === txnId ) {
-                if( map[txn.friend.id] === 1 ) {
-                    acc.push({
-                        ...txn,
-                        amount: 0,
-                        reason: undefined
-                    });
-                }
-            } else {
-                acc.push(txn);
-            }
-            return acc;
-        }, [] as TxnType[])
+      txns,
+      // txns: txns.reduce((acc, txn) => {
+      //     if( txn.id === txnId ) {
+      //         if( map[txn.friend.id] === 1 ) {
+      //             acc.push({
+      //                 ...txn,
+      //                 amount: 0,
+      //                 reason: undefined
+      //             });
+      //         }
+      //     } else {
+      //         acc.push(txn);
+      //     }
+      //     return acc;
+      // }, [] as TxnType[])
     };
 };
