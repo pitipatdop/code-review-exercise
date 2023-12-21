@@ -44,10 +44,10 @@ const FriendListItem = ({ friend }: IProps) => {
     );
 
     const updateName = () => {
-        const trimmedNewName = newName? newName.trim(): newName
+        const trimmedNewName = newName ? newName.trim(): ""
 
-        if (!trimmedNewName || trimmedNewName === "") {
-            return alert("Name cannot be empty");
+        if (trimmedNewName === "") {
+          return alert("Name cannot be empty");
         }
 
         updateFriendName(friend.id, trimmedNewName);
