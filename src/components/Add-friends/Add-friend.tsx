@@ -35,10 +35,8 @@ const AddFriend = () => {
     };
 
     const _addFriend = () => {
+        if (!name) return;
         const _name = name.toLowerCase();
-
-        if (!_name) return;
-
         const exists = friends.find((friend) => friend.name.toLowerCase() === _name);
 
         if (
